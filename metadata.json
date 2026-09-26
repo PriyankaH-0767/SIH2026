@@ -1,0 +1,8 @@
+{
+  "name": "PDS-DemandSync",
+  "description": "Decision-support prototype for Karnataka's Public Distribution System. The system recommends; the human officer decides.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

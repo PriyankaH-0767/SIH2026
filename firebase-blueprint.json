@@ -1,0 +1,238 @@
+{
+  "entities": {
+    "DistrictAuthority": {
+      "title": "DistrictAuthority",
+      "description": "District administrative authority overseeing food and civil supplies in a Karnataka district",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique district authority code (e.g., DIST-BLR-URBAN)"
+        },
+        "districtName": {
+          "type": "string",
+          "description": "District name (e.g. Bengaluru Urban, Mysuru, Belagavi)"
+        },
+        "officerName": {
+          "type": "string",
+          "description": "Name and designation of the District Supply Officer"
+        },
+        "loginId": {
+          "type": "string",
+          "description": "Official Gov login identifier"
+        },
+        "tier": {
+          "type": "string",
+          "enum": ["dso", "inspector", "comm"],
+          "description": "Jurisdiction level"
+        },
+        "division": {
+          "type": "string",
+          "description": "Administrative revenue division"
+        },
+        "officeAddress": {
+          "type": "string",
+          "description": "District headquarters office location"
+        },
+        "email": {
+          "type": "string",
+          "description": "Official email address"
+        },
+        "phone": {
+          "type": "string",
+          "description": "Office phone number"
+        },
+        "fpsCount": {
+          "type": "number",
+          "description": "Total registered fair price shops in the district"
+        },
+        "beneficiaryCount": {
+          "type": "number",
+          "description": "Total registered cardholders"
+        }
+      },
+      "required": ["id", "districtName", "officerName", "loginId", "tier"]
+    },
+    "FpsDealer": {
+      "title": "FpsDealer",
+      "description": "Authorized Fair Price Shop dealer managing monthly grain distribution",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique shop license identifier (e.g. KA-BLR-FPS-104)"
+        },
+        "shopNumber": {
+          "type": "string",
+          "description": "Official shop number"
+        },
+        "name": {
+          "type": "string",
+          "description": "Store legal registered name"
+        },
+        "dealerName": {
+          "type": "string",
+          "description": "Authorized licensee individual name"
+        },
+        "districtId": {
+          "type": "string",
+          "description": "Associated district authority ID"
+        },
+        "district": {
+          "type": "string",
+          "description": "District name"
+        },
+        "taluk": {
+          "type": "string",
+          "description": "Taluk or administrative zone"
+        },
+        "address": {
+          "type": "string",
+          "description": "Physical shop location"
+        },
+        "phoneNumber": {
+          "type": "string",
+          "description": "Dealer contact number"
+        },
+        "loginPin": {
+          "type": "string",
+          "description": "4-digit security PIN"
+        },
+        "beneficiaryCount": {
+          "type": "number",
+          "description": "Enrolled cardholders count"
+        },
+        "readinessStatus": {
+          "type": "string",
+          "enum": ["Verified", "Discrepancy", "Not Ready"],
+          "description": "Readiness certification status"
+        }
+      },
+      "required": ["id", "shopNumber", "name", "dealerName", "districtId", "district"]
+    },
+    "Beneficiary": {
+      "title": "Beneficiary",
+      "description": "Registered PDS ration cardholder beneficiary profile",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Beneficiary ID (e.g., BEN-BLR-001)"
+        },
+        "rationCardNumber": {
+          "type": "string",
+          "description": "Karnataka Ration card number"
+        },
+        "cardType": {
+          "type": "string",
+          "enum": ["PHH (BPL)", "AAY (Antyodaya)", "NPHH (APL)"],
+          "description": "PDS card classification"
+        },
+        "headOfHousehold": {
+          "type": "string",
+          "description": "Head of household name"
+        },
+        "headOfHouseholdKn": {
+          "type": "string",
+          "description": "Head of household name in Kannada"
+        },
+        "districtId": {
+          "type": "string",
+          "description": "District Authority ID reference"
+        },
+        "district": {
+          "type": "string",
+          "description": "District name"
+        },
+        "ward": {
+          "type": "string",
+          "description": "Ward or Village"
+        },
+        "assignedFpsId": {
+          "type": "string",
+          "description": "Assigned FPS shop ID"
+        },
+        "assignedFpsName": {
+          "type": "string",
+          "description": "Assigned FPS shop name"
+        },
+        "phoneNumber": {
+          "type": "string",
+          "description": "Registered mobile phone"
+        },
+        "totalQuotaKg": {
+          "type": "number",
+          "description": "Total monthly foodgrain allocation in KG"
+        },
+        "currentCycleCollected": {
+          "type": "boolean",
+          "description": "Whether current monthly quota has been collected"
+        },
+        "activeTokenNumber": {
+          "type": "string",
+          "description": "Current virtual token or slot identifier"
+        }
+      },
+      "required": ["id", "rationCardNumber", "cardType", "headOfHousehold", "districtId", "assignedFpsId"]
+    },
+    "TokenSlot": {
+      "title": "TokenSlot",
+      "description": "Dynamic appointment and virtual token booking record",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Token document ID (e.g., TKN-2026-09-8829)"
+        },
+        "beneficiaryId": {
+          "type": "string",
+          "description": "Beneficiary ID"
+        },
+        "rationCardNumber": {
+          "type": "string",
+          "description": "Ration card number"
+        },
+        "fpsId": {
+          "type": "string",
+          "description": "Fair Price Shop ID"
+        },
+        "date": {
+          "type": "string",
+          "description": "Distribution collection day"
+        },
+        "timeShift": {
+          "type": "string",
+          "description": "2-hour operational shift"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["booked", "collected", "expired"],
+          "description": "Status of the token"
+        },
+        "timestamp": {
+          "type": "string",
+          "description": "ISO timestamp of token generation"
+        }
+      },
+      "required": ["id", "beneficiaryId", "fpsId", "date", "timeShift", "status"]
+    }
+  },
+  "firestore": {
+    "/district_authorities/{authorityId}": {
+      "schema": { "$ref": "entities.DistrictAuthority" },
+      "description": "District administrative authority records across Karnataka"
+    },
+    "/fps_dealers/{dealerId}": {
+      "schema": { "$ref": "entities.FpsDealer" },
+      "description": "Licensed Fair Price Shop dealers under district jurisdictions"
+    },
+    "/beneficiaries/{beneficiaryId}": {
+      "schema": { "$ref": "entities.Beneficiary" },
+      "description": "Beneficiary cardholder records with entitlements and district mapping"
+    },
+    "/tokens_and_slots/{tokenId}": {
+      "schema": { "$ref": "entities.TokenSlot" },
+      "description": "Dual-phase slot reservations and virtual tokens for ration collection"
+    }
+  }
+}

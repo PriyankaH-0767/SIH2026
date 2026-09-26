@@ -1,0 +1,59 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isValidId(id) {
+      return id is string && id.size() > 0 && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    // Connection testing
+    match /test/connection {
+      allow read: if true;
+    }
+
+    // District Administrative Authorities (Karnataka Public Directory)
+    match /district_authorities/{authorityId} {
+      allow get, list: if true;
+      allow create, update: if isValidId(authorityId) &&
+        request.resource.data.id is string &&
+        request.resource.data.districtName is string &&
+        request.resource.data.districtName.size() <= 100;
+      allow delete: if false;
+    }
+
+    // Fair Price Shop Dealers (Authorized Directory)
+    match /fps_dealers/{dealerId} {
+      allow get, list: if true;
+      allow create, update: if isValidId(dealerId) &&
+        request.resource.data.id is string &&
+        request.resource.data.shopNumber is string &&
+        request.resource.data.district is string;
+      allow delete: if false;
+    }
+
+    // Beneficiaries
+    match /beneficiaries/{beneficiaryId} {
+      allow get, list: if true;
+      allow create, update: if isValidId(beneficiaryId) &&
+        request.resource.data.id is string &&
+        request.resource.data.rationCardNumber is string &&
+        request.resource.data.districtId is string;
+      allow delete: if false;
+    }
+
+    // Token and Slot Reservations
+    match /tokens_and_slots/{tokenId} {
+      allow get, list: if true;
+      allow create, update: if isValidId(tokenId) &&
+        request.resource.data.id is string &&
+        request.resource.data.beneficiaryId is string &&
+        request.resource.data.fpsId is string;
+      allow delete: if isValidId(tokenId);
+    }
+
+    // Default catch-all
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
