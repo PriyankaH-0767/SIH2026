@@ -171,28 +171,28 @@ export const FpsDealerView: React.FC = () => {
             </div>
           </div>
 
-          <div className="flex items-center gap-3">
-            <div className="text-right">
+          <div className="flex flex-wrap items-center justify-between sm:justify-end gap-3 w-full sm:w-auto">
+            <div className="text-left sm:text-right">
               <span className="text-[10px] text-purple-300 block uppercase">ePoS Machine Status</span>
               <span className="inline-flex items-center gap-1 text-xs font-bold text-emerald-400">
-                <CheckCircle2 className="w-3.5 h-3.5" /> Scale Connected (0.00 KG)
+                <CheckCircle2 className="w-3.5 h-3.5 shrink-0" /> Scale Connected (0.00 KG)
               </span>
             </div>
             {currentShop.distributionStarted ? (
               <button
                 type="button"
                 onClick={() => closeDistribution(currentShop.id)}
-                className="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl shadow-xs cursor-pointer transition-all flex items-center gap-1.5"
+                className="px-3.5 sm:px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl shadow-xs cursor-pointer transition-all flex items-center gap-1.5"
                 title="Distribution is live. Click to close."
               >
-                <CheckCircle2 className="w-3.5 h-3.5" />
+                <CheckCircle2 className="w-3.5 h-3.5 shrink-0" />
                 <span>Distribution Live (Open)</span>
               </button>
             ) : (
               <button
                 type="button"
                 onClick={() => startDistribution(currentShop.id)}
-                className="px-4 py-2 bg-[#D4AF37] hover:bg-[#E5C158] text-[#2C0E38] font-bold text-xs rounded-xl shadow-xs cursor-pointer transition-all flex items-center gap-1.5"
+                className="px-3.5 sm:px-4 py-2 bg-[#D4AF37] hover:bg-[#E5C158] text-[#2C0E38] font-bold text-xs rounded-xl shadow-xs cursor-pointer transition-all flex items-center gap-1.5"
               >
                 <span>Open Distribution Window</span>
               </button>
@@ -203,21 +203,21 @@ export const FpsDealerView: React.FC = () => {
         {/* Live Assigned Delivery Truck Status Banner (Core Feature) */}
         {shopDispatch && (
           <div className="mt-3 pt-2.5 border-t border-purple-500/40 flex items-center justify-between gap-3 text-xs bg-purple-950/60 p-3 rounded-xl border border-purple-400/30 flex-wrap">
-            <div className="flex items-center gap-2.5">
+            <div className="flex items-center gap-2.5 min-w-0">
               <div className="w-7 h-7 rounded-lg bg-[#FFD700] text-purple-950 flex items-center justify-center shrink-0 font-bold">
                 <Truck className="w-4 h-4" />
               </div>
-              <div>
+              <div className="min-w-0">
                 <span className="text-[10px] uppercase font-bold text-purple-300 tracking-wider block">
                   Truck Assigned to This Shop:
                 </span>
-                <span className="font-bold text-white">
+                <span className="font-bold text-white truncate block">
                   {shopDispatch.truckId} · Driver: <strong className="text-[#FFD700]">{shopDispatch.driverName}</strong> ({shopDispatch.driverPhone})
                 </span>
               </div>
             </div>
 
-            <div className="flex items-center gap-2.5">
+            <div className="flex items-center gap-2.5 flex-wrap">
               <span className={`text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider ${
                 shopDispatch.status === 'arrived'
                   ? 'bg-emerald-500 text-white'
@@ -252,7 +252,7 @@ export const FpsDealerView: React.FC = () => {
       </div>
 
       {/* 2. DEALER 4 FUNCTIONAL NAVIGATION TABS */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 font-sans text-xs">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3 font-sans text-xs">
         {[
           {
             key: 'epos_counter' as DealerSection,
@@ -306,20 +306,20 @@ export const FpsDealerView: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setActiveSection(tab.key)}
-                className={`w-full p-3.5 rounded-2xl border text-left transition-all cursor-pointer flex flex-col justify-between ${
+                className={`w-full p-3 sm:p-3.5 rounded-2xl border text-left transition-all cursor-pointer flex flex-col justify-between min-h-[90px] sm:min-h-[105px] ${
                   tab.active
                     ? 'border-[#6B1870] bg-white shadow-md ring-2 ring-[#6B1870]'
                     : 'border-purple-100 bg-white hover:border-purple-300'
                 }`}
               >
-                <div className={`w-8 h-8 rounded-xl flex items-center justify-center mb-2 ${
+                <div className={`w-8 h-8 rounded-xl flex items-center justify-center mb-1.5 sm:mb-2 shrink-0 ${
                   tab.active ? 'bg-[#6B1870] text-white' : 'bg-purple-50 text-[#6B1870]'
                 }`}>
-                  <Icon className="w-4 h-4" />
+                  <Icon className="w-4 h-4 shrink-0" />
                 </div>
                 <div>
-                  <p className={`font-bold ${tab.active ? 'text-[#6B1870]' : 'text-slate-900'}`}>{tab.title}</p>
-                  <p className="text-[11px] text-slate-500 mt-0.5 truncate">{tab.desc}</p>
+                  <p className={`font-bold text-xs sm:text-sm leading-tight ${tab.active ? 'text-[#6B1870]' : 'text-slate-900'}`}>{tab.title}</p>
+                  <p className="text-[10px] sm:text-[11px] text-slate-500 mt-0.5 truncate">{tab.desc}</p>
                 </div>
               </button>
             </VoiceHoverGuide>

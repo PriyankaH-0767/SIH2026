@@ -178,15 +178,15 @@ export const OfficerSuite: React.FC = () => {
         </div>
 
         {/* District Authority and Tier Selector */}
-        <div className="flex flex-wrap items-center gap-2.5">
-          <div className="flex items-center gap-1.5 bg-slate-50 border border-slate-200 px-3 py-1.5 rounded-xl text-xs">
+        <div className="flex flex-wrap items-center gap-2 sm:gap-2.5 w-full md:w-auto">
+          <div className="flex items-center gap-1.5 bg-slate-50 border border-slate-200 px-2.5 sm:px-3 py-1.5 rounded-xl text-xs flex-1 sm:flex-none">
             <Building className="w-3.5 h-3.5 text-blue-600 shrink-0" />
-            <span className="font-bold text-slate-700">District:</span>
+            <span className="font-bold text-slate-700 shrink-0">District:</span>
             <select
               value={activeDistrictAuthority.id}
               onChange={(e) => switchDistrictAuthority(e.target.value)}
               aria-label="Select District Authority"
-              className="bg-transparent font-bold text-blue-900 focus:outline-hidden cursor-pointer"
+              className="bg-transparent font-bold text-blue-900 focus:outline-hidden cursor-pointer truncate max-w-[130px] sm:max-w-none"
             >
               {districtAuthoritiesList.map((da) => (
                 <option key={da.id} value={da.id}>
@@ -204,20 +204,20 @@ export const OfficerSuite: React.FC = () => {
                 `Google Maps Grounding · ${activeDistrictAuthority.districtName}`
               )
             }
-            className="px-3 py-1.5 bg-blue-50 hover:bg-blue-100 text-blue-800 border border-blue-300 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all shadow-2xs"
+            className="px-2.5 sm:px-3 py-1.5 bg-blue-50 hover:bg-blue-100 text-blue-800 border border-blue-300 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all shadow-2xs shrink-0 cursor-pointer"
             title="Locate offices on Google Maps"
           >
-            <MapPin className="w-3.5 h-3.5 text-red-500" />
+            <MapPin className="w-3.5 h-3.5 text-red-500 shrink-0" />
             <span>Maps Grounding</span>
           </button>
 
-          <div className="flex items-center gap-1.5">
-            <span className="text-xs text-slate-400 shrink-0 font-medium">Touchpoint & Role:</span>
+          <div className="flex items-center gap-1.5 w-full sm:w-auto">
+            <span className="text-xs text-slate-400 shrink-0 font-medium hidden sm:inline">Role:</span>
             <select
               value={officerTier}
               onChange={(e) => setOfficerTier(e.target.value as OfficerTier)}
               aria-label="Select Authority Role"
-              className="px-3 py-1.5 text-xs font-semibold text-slate-800 bg-slate-50 border border-slate-200 rounded-lg hover:bg-slate-100 focus:outline-hidden focus:ring-2 focus:ring-blue-500/30 cursor-pointer max-w-[280px]"
+              className="w-full sm:w-auto px-2.5 sm:px-3 py-1.5 text-xs font-semibold text-slate-800 bg-slate-50 border border-slate-200 rounded-lg hover:bg-slate-100 focus:outline-hidden focus:ring-2 focus:ring-blue-500/30 cursor-pointer max-w-full sm:max-w-[280px]"
             >
               <optgroup label="Touchpoint 4: District Operations (Primary Demo)">
                 <option value="dso">DSO (District Supply Officer - Full Active Ops)</option>
@@ -246,15 +246,15 @@ export const OfficerSuite: React.FC = () => {
       </div>
 
       {/* Scope Enforcement Banner */}
-      <div className="px-4 py-2 bg-slate-100 rounded-xl border border-slate-200/80 text-xs text-slate-600 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <Layers className="w-3.5 h-3.5 text-blue-600" />
-          <span>
+      <div className="px-3 sm:px-4 py-2 bg-slate-100 rounded-xl border border-slate-200/80 text-xs text-slate-600 flex items-center justify-between gap-2">
+        <div className="flex items-center gap-2 min-w-0">
+          <Layers className="w-3.5 h-3.5 text-blue-600 shrink-0" />
+          <span className="truncate sm:whitespace-normal">
             <strong>Enforced Scope:</strong> Only records within{' '}
-            <span className="text-blue-900 font-semibold">{currentProfile.jurisdiction}</span> are accessible. Sideways or unauthorized upward jurisdiction data is excluded.
+            <span className="text-blue-900 font-semibold">{currentProfile.jurisdiction}</span> are accessible.
           </span>
         </div>
-        <span className="text-[11px] font-mono text-slate-400 hidden sm:inline">
+        <span className="text-[11px] font-mono text-slate-400 hidden sm:inline shrink-0">
           {scopedShops.length} Fair Price Depots in Scope
         </span>
       </div>
@@ -263,29 +263,29 @@ export const OfficerSuite: React.FC = () => {
       {officerTier === 'dso' && (
         <div className="space-y-6">
           {/* DSO Sub-Navigation Tabs */}
-          <div className="flex items-center gap-2 border-b border-slate-200 pb-3">
+          <div className="flex items-center gap-2 border-b border-slate-200 pb-3 overflow-x-auto scrollbar-none flex-nowrap sm:flex-wrap">
             <button
               onClick={() => setDsoTab('kpi_ai')}
-              className={`px-4 py-2 text-xs font-bold rounded-lg transition-colors flex items-center gap-1.5 ${
+              className={`px-3 sm:px-4 py-2 text-xs font-bold rounded-lg transition-colors flex items-center gap-1.5 shrink-0 whitespace-nowrap ${
                 dsoTab === 'kpi_ai'
                   ? 'bg-[#1B2A4A] text-white shadow-xs'
                   : 'text-slate-600 hover:text-slate-900 bg-slate-100'
               }`}
             >
-              <Sparkles className="w-3.5 h-3.5 text-teal-300" />
-              <span>KPIs & AI Dispatch Recommendations</span>
+              <Sparkles className="w-3.5 h-3.5 text-teal-300 shrink-0" />
+              <span>KPIs & AI Dispatch</span>
             </button>
 
             <button
               onClick={() => setDsoTab('heatmap')}
-              className={`px-4 py-2 text-xs font-bold rounded-lg transition-colors flex items-center gap-1.5 ${
+              className={`px-3 sm:px-4 py-2 text-xs font-bold rounded-lg transition-colors flex items-center gap-1.5 shrink-0 whitespace-nowrap ${
                 dsoTab === 'heatmap'
                   ? 'bg-[#0E7C7B] text-white shadow-xs'
                   : 'text-slate-600 hover:text-slate-900 bg-slate-100'
               }`}
             >
-              <TrendingUp className="w-3.5 h-3.5 text-amber-300" />
-              <span>Predictive Supply Heatmap (SIH)</span>
+              <TrendingUp className="w-3.5 h-3.5 text-amber-300 shrink-0" />
+              <span>Supply Heatmap (SIH)</span>
               <span className="text-[10px] bg-rose-500 text-white px-1.5 py-0.2 rounded-full font-bold">
                 Spike Alert
               </span>
@@ -293,40 +293,40 @@ export const OfficerSuite: React.FC = () => {
 
             <button
               onClick={() => setDsoTab('map')}
-              className={`px-4 py-2 text-xs font-bold rounded-lg transition-colors flex items-center gap-1.5 ${
+              className={`px-3 sm:px-4 py-2 text-xs font-bold rounded-lg transition-colors flex items-center gap-1.5 shrink-0 whitespace-nowrap ${
                 dsoTab === 'map'
                   ? 'bg-[#1B2A4A] text-white shadow-xs'
                   : 'text-slate-600 hover:text-slate-900 bg-slate-100'
               }`}
             >
-              <Truck className="w-3.5 h-3.5 text-amber-300" />
-              <span>Assigned Truck Fleet by FPS Shop & GIS Map</span>
+              <Truck className="w-3.5 h-3.5 text-amber-300 shrink-0" />
+              <span>Truck Fleet & GIS Map</span>
             </button>
 
             <button
               onClick={() => setDsoTab('report')}
-              className={`px-4 py-2 text-xs font-bold rounded-lg transition-colors flex items-center gap-1.5 ${
+              className={`px-3 sm:px-4 py-2 text-xs font-bold rounded-lg transition-colors flex items-center gap-1.5 shrink-0 whitespace-nowrap ${
                 dsoTab === 'report'
                   ? 'bg-[#1B2A4A] text-white shadow-xs'
                   : 'text-slate-600 hover:text-slate-900 bg-slate-100'
               }`}
             >
-              <FileText className="w-3.5 h-3.5" />
-              <span>Monthly Allocation & Leftover Report</span>
+              <FileText className="w-3.5 h-3.5 shrink-0" />
+              <span>Monthly Allocation Report</span>
             </button>
 
             <button
               onClick={() => setDsoTab('escalations')}
-              className={`px-4 py-2 text-xs font-bold rounded-lg transition-colors flex items-center gap-1.5 ${
+              className={`px-3 sm:px-4 py-2 text-xs font-bold rounded-lg transition-colors flex items-center gap-1.5 shrink-0 whitespace-nowrap ${
                 dsoTab === 'escalations'
                   ? 'bg-[#1B2A4A] text-white shadow-xs'
                   : 'text-slate-600 hover:text-slate-900 bg-slate-100'
               }`}
             >
-              <AlertTriangle className="w-3.5 h-3.5 text-amber-300" />
-              <span>Escalations & Field Alerts</span>
+              <AlertTriangle className="w-3.5 h-3.5 text-amber-300 shrink-0" />
+              <span>Escalations</span>
               {inspections.some((i) => i.escalatedToDso) && (
-                <span className="w-2 h-2 rounded-full bg-red-400"></span>
+                <span className="w-2 h-2 rounded-full bg-red-400 shrink-0"></span>
               )}
             </button>
           </div>

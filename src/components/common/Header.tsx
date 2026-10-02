@@ -103,27 +103,27 @@ export const Header: React.FC<HeaderProps> = ({
     <header className="w-full font-serif select-none border-b border-purple-900/30">
       {/* 1. TOP BRANDING ROW - ROYAL PURPLE (#2C0E38) & GOLD ACCENTS */}
       <div className="bg-[#2C0E38] text-white px-3 sm:px-6 py-2.5 sm:py-3 border-b border-purple-900/40">
-        <div className="max-w-7xl mx-auto flex items-center justify-between gap-3">
+        <div className="max-w-7xl mx-auto flex items-center justify-between gap-2 sm:gap-3">
           {/* Left: Emblem Roundel + Food & Civil Supplies Department Title */}
-          <div className="flex items-center gap-3">
-            <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-[#481656] border-2 border-[#D4AF37] flex items-center justify-center shrink-0 shadow-md">
-              <Wheat className="w-7 h-7 text-[#FFD700]" />
+          <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
+            <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-full bg-[#481656] border-2 border-[#D4AF37] flex items-center justify-center shrink-0 shadow-md">
+              <Wheat className="w-5 h-5 sm:w-7 sm:h-7 text-[#FFD700]" />
             </div>
-            <div>
-              <div className="flex items-center gap-2">
-                <span className="text-[10px] text-[#FFD700] uppercase font-sans font-bold tracking-wider">
-                  ಆಹಾರ ಮತ್ತು ನಾಗರಿಕ ಸರಬರಾಜು · Public Distribution System
+            <div className="min-w-0">
+              <div className="flex items-center gap-1.5 flex-wrap">
+                <span className="text-[9px] sm:text-[10px] text-[#FFD700] uppercase font-sans font-bold tracking-wider truncate">
+                  ಆಹಾರ ಮತ್ತು ನಾಗರಿಕ ಸರಬರಾಜು · PDS
                 </span>
-                <span className="text-[10px] bg-amber-500/20 text-[#FFD700] px-2 py-0.2 rounded-full border border-amber-400/30 font-sans font-semibold hidden md:inline">
+                <span className="text-[9px] sm:text-[10px] bg-amber-500/20 text-[#FFD700] px-1.5 py-0.2 rounded-full border border-amber-400/30 font-sans font-semibold hidden md:inline">
                   PDS Demand Sync 2.0
                 </span>
               </div>
-              <h1 className="text-xs sm:text-sm md:text-base font-bold text-white tracking-tight leading-snug">
+              <h1 className="text-xs sm:text-sm md:text-base font-bold text-white tracking-tight leading-snug truncate sm:whitespace-normal">
                 {language === 'kn'
                   ? 'ಆಹಾರ, ನಾಗರಿಕ ಸರಬರಾಜು ಮತ್ತು ಗ್ರಾಹಕರ ವ್ಯವಹಾರಗಳ ಇಲಾಖೆ'
                   : 'Department of Food, Civil Supplies & Consumer Affairs'}
               </h1>
-              <p className="text-[11px] sm:text-xs text-purple-200/90 font-serif">
+              <p className="text-[10px] sm:text-xs text-purple-200/90 font-serif hidden sm:block">
                 {language === 'kn'
                   ? 'ಕೇಂದ್ರೀಯ ಗೋದಾಮುಗಳಿಂದ ನಾಗರಿಕರ ಮನೆಬಾಗಿಲಿಗೆ ಪಾರದರ್ಶಕ ಪಡಿತರ ವಿತರಣಾ ವ್ಯವಸ್ಥೆ'
                   : 'Central FCI Pool to Citizen End-to-End Public Distribution Supply Chain'}
@@ -150,7 +150,7 @@ export const Header: React.FC<HeaderProps> = ({
           </div>
 
           {/* Right: Audio Reader + Language Selector + Realtime Clock */}
-          <div className="flex items-center gap-3 sm:gap-4 shrink-0">
+          <div className="flex items-center gap-2 sm:gap-4 shrink-0">
             <div className="text-right hidden sm:block">
               <span className="text-[10px] text-purple-300 uppercase tracking-wider block font-sans">
                 {language === 'kn' ? 'ನಾಗರಿಕ ಸಹಾಯವಾಣಿ 1967' : 'Toll-Free Helpline 1967'}
@@ -169,9 +169,18 @@ export const Header: React.FC<HeaderProps> = ({
               </div>
             </div>
 
+            {/* Mobile Voice Assist Icon */}
+            <button
+              onClick={handleAudioHelp}
+              className="sm:hidden p-1.5 text-purple-200 hover:text-[#FFD700] bg-[#481656] rounded-md border border-purple-300/30 cursor-pointer"
+              title="Listen aloud"
+            >
+              <Volume2 className="w-4 h-4 text-[#FFD700]" />
+            </button>
+
             {/* Language Selector */}
-            <div className="flex items-center gap-1 bg-[#481656] px-2 py-1 rounded-sm border border-purple-300/30 text-xs text-purple-100 font-sans">
-              <Globe className="w-3.5 h-3.5 text-[#FFD700]" />
+            <div className="flex items-center gap-1 bg-[#481656] px-2 py-1 rounded-md border border-purple-300/30 text-xs text-purple-100 font-sans">
+              <Globe className="w-3.5 h-3.5 text-[#FFD700] shrink-0" />
               <select
                 value={language}
                 onChange={(e) => setLanguage(e.target.value as Language)}
@@ -190,42 +199,42 @@ export const Header: React.FC<HeaderProps> = ({
 
       {/* 2. NAVIGATION BAR - ROYAL DEEP PURPLE (#481656) */}
       <nav className="bg-[#481656] text-white px-3 sm:px-6 py-2 shadow-sm font-sans text-xs">
-        <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
+        <div className="max-w-7xl mx-auto flex items-center justify-between gap-2 sm:gap-4">
           {/* Active Role Module Title */}
-          <div className="flex items-center gap-2 py-0.5 text-xs">
-            <span className="text-[#FFD700] font-sans font-bold uppercase tracking-wider">
-              {currentRole === 'citizen' && (language === 'kn' ? 'ನಾಗರಿಕ ಪೋರ್ಟಲ್ · ಇ-ಟೋಕನ್ ಮತ್ತು ಕೋಟಾ' : 'Citizen Beneficiary Window · Quota & Pre-Booking')}
-              {currentRole === 'dealer' && (language === 'kn' ? 'ನ್ಯಾಯಬೆಲೆ ಅಂಗಡಿ ಟರ್ಮಿನಲ್ · ಇ-ಪಿಒಎಸ್' : 'Fair Price Shop Terminal · ePoS & Inward Stocks')}
-              {currentRole === 'officer' && (language === 'kn' ? 'ಸರಬರಾಜು ಪ್ರಾಧಿಕಾರ · ಕಾರ್ಯಾಚರಣೆ ಕೊಠಡಿ' : 'Civil Supplies Authority · Operational Command')}
-              {!currentRole && (language === 'kn' ? 'ಸಾರ್ವಜನಿಕ ಪಡಿತರ ವ್ಯವಸ್ಥೆ' : 'Karnataka Public Distribution Gateway')}
+          <div className="flex items-center gap-2 py-0.5 text-xs min-w-0">
+            <span className="text-[#FFD700] font-sans font-bold uppercase tracking-wider text-[11px] sm:text-xs truncate">
+              {currentRole === 'citizen' && (language === 'kn' ? 'ನಾಗರಿಕ ಪೋರ್ಟಲ್ · ಕೋಟಾ' : 'Citizen Beneficiary Window')}
+              {currentRole === 'dealer' && (language === 'kn' ? 'ನ್ಯಾಯಬೆಲೆ ಡೀಲರ್ · ಇ-ಪಿಒಎಸ್' : 'FPS Dealer Terminal')}
+              {currentRole === 'officer' && (language === 'kn' ? 'ಸರಬರಾಜು ಪ್ರಾಧಿಕಾರ' : 'Civil Supplies Command')}
+              {!currentRole && (language === 'kn' ? 'ಸಾರ್ವಜನಿಕ ಪಡಿತರ ವ್ಯವಸ್ಥೆ' : 'Karnataka ePDS Gateway')}
             </span>
           </div>
 
           {/* Right Action: Role Badge & Log Out / Switch Role */}
-          <div className="flex items-center gap-2 shrink-0">
+          <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
             {currentRole ? (
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1.5 sm:gap-2">
                 {/* Active Role Badge */}
-                <div className="flex items-center gap-1.5 bg-[#2C0E38] px-2.5 py-1 rounded-sm border border-[#D4AF37]/50 text-xs">
+                <div className="flex items-center gap-1.5 bg-[#2C0E38] px-2 sm:px-2.5 py-1 rounded-md border border-[#D4AF37]/50 text-xs">
                   {currentRole === 'citizen' && (
                     <>
-                      <User className="w-3.5 h-3.5 text-[#FFD700]" />
-                      <span className="font-bold text-white max-w-[150px] truncate">
-                        {citizen.headOfHousehold} ({citizen.cardType.split(' ')[0]})
+                      <User className="w-3.5 h-3.5 text-[#FFD700] shrink-0" />
+                      <span className="font-bold text-white max-w-[85px] sm:max-w-[150px] truncate text-[11px] sm:text-xs">
+                        {citizen.headOfHousehold.split(' ')[0]} ({citizen.cardType.split(' ')[0]})
                       </span>
                     </>
                   )}
                   {currentRole === 'dealer' && (
                     <>
-                      <Store className="w-3.5 h-3.5 text-[#FFD700]" />
-                      <span className="font-bold text-white">Dealer {dealerShopId}</span>
+                      <Store className="w-3.5 h-3.5 text-[#FFD700] shrink-0" />
+                      <span className="font-bold text-white text-[11px] sm:text-xs">FPS #{dealerShopId.split('-').pop()}</span>
                     </>
                   )}
                   {currentRole === 'officer' && (
                     <>
-                      <Shield className="w-3.5 h-3.5 text-[#FFD700]" />
-                      <span className="font-bold text-white uppercase text-[11px]">
-                        {officerTier.toUpperCase()}: {OFFICER_PROFILES[officerTier]?.name.split(' ')[0]}
+                      <Shield className="w-3.5 h-3.5 text-[#FFD700] shrink-0" />
+                      <span className="font-bold text-white uppercase text-[10px] sm:text-[11px]">
+                        {officerTier.toUpperCase()}
                       </span>
                     </>
                   )}
@@ -234,20 +243,21 @@ export const Header: React.FC<HeaderProps> = ({
                 {/* Sign Out / Switch Role Button */}
                 <button
                   onClick={logout}
-                  className="flex items-center gap-1 bg-red-950/90 hover:bg-red-900 text-amber-200 border border-red-700/60 px-3 py-1 rounded-sm text-xs font-bold cursor-pointer transition-colors"
+                  className="flex items-center gap-1 bg-red-950/90 hover:bg-red-900 text-amber-200 border border-red-700/60 px-2 sm:px-3 py-1 rounded-md text-xs font-bold cursor-pointer transition-colors"
                   title="Return to Login Gateway"
                 >
-                  <LogOut className="w-3.5 h-3.5" />
-                  <span>{language === 'kn' ? 'ಲಾಗಿನ್ ಬದಲಿಸಿ' : 'Switch Role / Log Out'}</span>
+                  <LogOut className="w-3.5 h-3.5 shrink-0" />
+                  <span className="hidden sm:inline">{language === 'kn' ? 'ಲಾಗಿನ್ ಬದಲಿಸಿ' : 'Switch Role'}</span>
+                  <span className="sm:hidden text-[11px]">Exit</span>
                 </button>
               </div>
             ) : (
               <button
                 onClick={onGoToLogin}
-                className="flex items-center gap-1 bg-[#D4AF37] hover:bg-[#E5C158] text-[#2C0E38] px-3.5 py-1 rounded-sm text-xs font-bold font-sans cursor-pointer transition-colors shadow-xs"
+                className="flex items-center gap-1 bg-[#D4AF37] hover:bg-[#E5C158] text-[#2C0E38] px-3 sm:px-3.5 py-1 rounded-md text-xs font-bold font-sans cursor-pointer transition-colors shadow-xs"
               >
-                <LogIn className="w-3.5 h-3.5 text-[#2C0E38]" />
-                <span>{language === 'kn' ? 'ಲಾಗಿನ್ / ಸೈನ್ ಇನ್' : 'Log In'}</span>
+                <LogIn className="w-3.5 h-3.5 text-[#2C0E38] shrink-0" />
+                <span>{language === 'kn' ? 'ಲಾಗಿನ್' : 'Log In'}</span>
               </button>
             )}
           </div>

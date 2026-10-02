@@ -255,14 +255,17 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onEnterAsGuest }) => {
                   setActiveTab('citizen');
                   setErrorMessage(null);
                 }}
-                className={`w-full py-3.5 px-2 text-center font-bold flex flex-col sm:flex-row items-center justify-center gap-1.5 border-b-2 transition-all cursor-pointer ${
+                className={`w-full py-3 sm:py-3.5 px-1.5 sm:px-2 text-center font-bold flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-1.5 border-b-2 transition-all cursor-pointer ${
                   activeTab === 'citizen'
                     ? 'border-[#6B1870] text-[#6B1870] bg-white shadow-xs'
                     : 'border-transparent text-slate-600 hover:text-[#6B1870] hover:bg-purple-100/50'
                 }`}
               >
-                <User className="w-4 h-4 text-[#6B1870]" />
-                <span>{language === 'kn' ? '1. ನಾಗರಿಕ ಫಲಾನುಭವಿ' : '1. Citizen Beneficiary'}</span>
+                <User className="w-4 h-4 text-[#6B1870] shrink-0" />
+                <span className="text-[11px] sm:text-xs">
+                  {language === 'kn' ? '1. ನಾಗರಿಕ' : '1. Citizen'}
+                  <span className="hidden sm:inline">{language === 'kn' ? ' ಫಲಾನುಭವಿ' : ' Beneficiary'}</span>
+                </span>
               </button>
             </VoiceHoverGuide>
 
@@ -276,14 +279,17 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onEnterAsGuest }) => {
                   setActiveTab('authority');
                   setErrorMessage(null);
                 }}
-                className={`w-full py-3.5 px-2 text-center font-bold flex flex-col sm:flex-row items-center justify-center gap-1.5 border-b-2 transition-all cursor-pointer ${
+                className={`w-full py-3 sm:py-3.5 px-1.5 sm:px-2 text-center font-bold flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-1.5 border-b-2 transition-all cursor-pointer ${
                   activeTab === 'authority'
                     ? 'border-[#6B1870] text-[#6B1870] bg-white shadow-xs'
                     : 'border-transparent text-slate-600 hover:text-[#6B1870] hover:bg-purple-100/50'
                 }`}
               >
-                <Shield className="w-4 h-4 text-[#6B1870]" />
-                <span>{language === 'kn' ? '2. ಸರಬರಾಜು ಪ್ರಾಧಿಕಾರ' : '2. Authority (5 Tiers)'}</span>
+                <Shield className="w-4 h-4 text-[#6B1870] shrink-0" />
+                <span className="text-[11px] sm:text-xs">
+                  {language === 'kn' ? '2. ಪ್ರಾಧಿಕಾರ' : '2. Authority'}
+                  <span className="hidden sm:inline">{language === 'kn' ? ' (5 ಶ್ರೇಣಿಗಳು)' : ' (5 Tiers)'}</span>
+                </span>
               </button>
             </VoiceHoverGuide>
 
@@ -297,14 +303,17 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onEnterAsGuest }) => {
                   setActiveTab('dealer');
                   setErrorMessage(null);
                 }}
-                className={`w-full py-3.5 px-2 text-center font-bold flex flex-col sm:flex-row items-center justify-center gap-1.5 border-b-2 transition-all cursor-pointer ${
+                className={`w-full py-3 sm:py-3.5 px-1.5 sm:px-2 text-center font-bold flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-1.5 border-b-2 transition-all cursor-pointer ${
                   activeTab === 'dealer'
                     ? 'border-[#6B1870] text-[#6B1870] bg-white shadow-xs'
                     : 'border-transparent text-slate-600 hover:text-[#6B1870] hover:bg-purple-100/50'
                 }`}
               >
-                <Store className="w-4 h-4 text-[#6B1870]" />
-                <span>{language === 'kn' ? '3. ನ್ಯಾಯಬೆಲೆ ಡೀಲರ್' : '3. FPS Dealer'}</span>
+                <Store className="w-4 h-4 text-[#6B1870] shrink-0" />
+                <span className="text-[11px] sm:text-xs">
+                  {language === 'kn' ? '3. ಡೀಲರ್' : '3. Dealer'}
+                  <span className="hidden sm:inline">{language === 'kn' ? ' (FPS)' : ' (FPS)'}</span>
+                </span>
               </button>
             </VoiceHoverGuide>
           </div>

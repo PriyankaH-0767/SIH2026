@@ -129,8 +129,8 @@ export const CitizenView: React.FC = () => {
         </div>
       </div>
 
-      {/* 2. CITIZEN FUNCTIONAL NAVIGATION TILES - ONLY THE 6 REAL CITIZEN ACTIONS */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 font-sans text-xs">
+      {/* 2. CITIZEN FUNCTIONAL NAVIGATION TILES - ONLY THE 5 REAL CITIZEN ACTIONS */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5 sm:gap-3 font-sans text-xs">
         {[
           {
             key: 'booking' as CitizenSection,
@@ -194,27 +194,27 @@ export const CitizenView: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setActiveSection(item.key)}
-                className={`w-full p-3.5 rounded-2xl border text-left transition-all cursor-pointer flex flex-col justify-between ${
+                className={`w-full p-3 sm:p-3.5 rounded-2xl border text-left transition-all cursor-pointer flex flex-col justify-between min-h-[90px] sm:min-h-[105px] ${
                   isSelected
                     ? 'border-[#6B1870] bg-white shadow-md ring-2 ring-[#6B1870]'
                     : 'border-purple-100 bg-white hover:border-purple-300 hover:shadow-xs'
                 }`}
               >
-                <div className="flex items-center justify-between w-full mb-2">
-                  <div className={`w-8 h-8 rounded-xl flex items-center justify-center ${
+                <div className="flex items-center justify-between w-full mb-1.5 sm:mb-2">
+                  <div className={`w-8 h-8 rounded-xl flex items-center justify-center shrink-0 ${
                     isSelected ? 'bg-[#6B1870] text-white' : 'bg-purple-50 text-[#6B1870]'
                   }`}>
-                    <Icon className="w-4 h-4" />
+                    <Icon className="w-4 h-4 shrink-0" />
                   </div>
                   {item.badge && (
-                    <span className="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-1.5 py-0.2 rounded">
+                    <span className="text-[9px] sm:text-[10px] bg-emerald-100 text-emerald-800 font-bold px-1.5 py-0.2 rounded shrink-0">
                       {item.badge}
                     </span>
                   )}
                 </div>
                 <div>
-                  <p className={`font-bold ${isSelected ? 'text-[#6B1870]' : 'text-slate-900'}`}>{item.title}</p>
-                  <p className="text-[11px] text-slate-500 mt-0.5 truncate">{item.sub}</p>
+                  <p className={`font-bold text-xs sm:text-sm leading-tight ${isSelected ? 'text-[#6B1870]' : 'text-slate-900'}`}>{item.title}</p>
+                  <p className="text-[10px] sm:text-[11px] text-slate-500 mt-0.5 truncate">{item.sub}</p>
                 </div>
               </button>
             </VoiceHoverGuide>
