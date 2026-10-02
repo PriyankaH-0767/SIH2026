@@ -2,6 +2,7 @@ import express from 'express';
 import { GoogleGenAI } from '@google/genai';
 import dotenv from 'dotenv';
 import path from 'path';
+import fs from 'fs';
 import { fileURLToPath } from 'url';
 
 dotenv.config();
@@ -240,7 +241,8 @@ app.get('/api/health', (req, res) => {
 
 // Full-stack Vite setup
 async function startServer() {
-  if (process.env.NODE_ENV === 'production') {
+  const hasDist = fs.existsSync(path.resolve(__dirname, 'dist', 'index.html'));
+  if (process.env.NODE_ENV === 'production' || hasDist) {
     app.use(express.static(path.resolve(__dirname, 'dist')));
     app.get('*', (req, res) => {
       res.sendFile(path.resolve(__dirname, 'dist', 'index.html'));
@@ -248,7 +250,15 @@ async function startServer() {
   } else {
     const { createServer } = await import('vite');
     const vite = await createServer({
-      server: { middlewareMode: true },
+      server: {
+        middlewareMode: true,
+        allowedHosts: [
+          'sih2026-production-683d.up.railway.app',
+          '.up.railway.app',
+          'localhost',
+          '127.0.0.1',
+        ],
+      },
       appType: 'spa',
     });
     app.use(vite.middlewares);
